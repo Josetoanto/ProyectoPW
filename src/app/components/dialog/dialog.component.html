@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Asignaturas</h1>
+    <div mat-dialog-content>
+      <ul>
+        @for (asignature of data.asignatures; track asignature) {
+          <li>{{ asignature }}</li>
+        }
+      </ul>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="closeDialog()">Cerrar</button>
+    </div>

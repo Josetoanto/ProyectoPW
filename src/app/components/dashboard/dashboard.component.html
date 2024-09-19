@@ -1,0 +1,74 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Dashboard</h1>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        Alumnos
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+    <table>
+      @for (elementStudent of studentArray; track elementStudent){
+          <tr>
+            <tfoot>
+              <td>
+                {{elementStudent.id}} 
+              </td>
+              <td>
+                {{elementStudent.name}}         
+              </td>
+              <td>Asignaturas: 
+                @for ( asignature of elementStudent.asignatures; track asignature) {
+                  {{asignature + ' '}}
+                }
+              </td>
+              <td>
+                <button mat-button (click)="deleteStudent(elementStudent.id)">Borrar</button>
+              </td>
+              <td>
+                <button mat-button onclick="mostrarAsignaturas()"> Asignaturas</button>
+              </td>
+            </tfoot>
+          </tr>
+      }
+      
+     
+    </table>
+    </mat-card-content>
+  </mat-card>
+  
+  <mat-card class="mat-card">
+    <mat-card-header>
+      <mat-card-title>
+        Agregar Alumno Simple
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="mat-card-content">
+      <div>
+        <p>Nombre:</p>
+        <input type="text" [(ngModel)]="name">
+        <p>Asignaturas (Separar por comillas):</p>
+        <textarea [(ngModel)]="asignatures"></textarea>
+      </div>
+      <button mat-button (click)="addStudent()">Agregar</button>
+    </mat-card-content>
+  </mat-card>
+  
+
+  <mat-card class="mat-card">
+    <mat-card-header>
+      <mat-card-title>
+        Agregar Alumno
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="mat-card-content">
+      <div>
+        <p>Nombre:</p>
+        <app-input-clearable></app-input-clearable>
+        <p>Asignaturas:</p>
+        <chips-list></chips-list>
+      </div>
+      <button mat-button>Agregar</button>
+    </mat-card-content>
+  </mat-card>
+</div>

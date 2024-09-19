@@ -1,0 +1,26 @@
+<mat-form-field class="example-chip-list">
+    <mat-label>Asignaturas del alumno:</mat-label>
+    <mat-chip-grid #chipGrid aria-label="Enter fruits">
+      @for (asignature of asignatures(); track asignature) {
+        <mat-chip-row
+          (removed)="remove(asignature)"
+          [editable]="true"
+          (edited)="edit(asignature, $event)"
+          [aria-description]="'press enter to edit ' + asignature.name"
+        >
+          {{asignature.name}}
+          <button matChipRemove [attr.aria-label]="'remove ' + asignature.name">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      }
+      <input
+        placeholder="Nueva asignatura..."
+        [matChipInputFor]="chipGrid"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add($event)"
+      />
+    </mat-chip-grid>
+  </mat-form-field>
+  
